@@ -24,7 +24,7 @@ This table is the denominator. Patients in it with no matching codes are counted
 | `patient_id` | integer or string | Must match `cohort.patient_id` |
 | `accession_id` | integer or string | Must match `cohort.accession_id` |
 | `icd_code` | string | ICD-9 or ICD-10 code **with the dot**, e.g. `I21.4`, `410.71` |
-| `days_to_icd` | number | Days from the index exam to the code. Negative means before the index exam. May be empty. |
+| `days_to_icd` | number | Days from the index exam to the code. Above 0 counts as incident; 0 or below counts as prevalent. May be empty. |
 
 Use day offsets, not dates. If your source has dates, compute `code_date - index_date` in days before running the
 notebook, and leave the dates out of the tables. Exact dates are identifying; offsets from an index exam are not.
@@ -37,7 +37,7 @@ Results use the `dapamede2026_ehj_bac` definitions.
 |---|---|---|
 | 1001 | `I21.4` (120, 125), `I10` | AMI incident, first on day 120 |
 | 1002 | `410.71` (-800), `I21.9` (900) | AMI prevalent (ICD-9) and incident (ICD-10) |
-| 1003 | `I50.23` (0) | HF incident: day 0 counts as incident |
+| 1003 | `I50.23` (0) | HF prevalent: day 0 (the day of the mammogram) counts as prevalent; incident means after the mammogram |
 | 1004 | `428.0` (200), `I50.9` (400) | No HF: these codes are not in the definition (shown in the QA near-miss table) |
 | 1005 | `434.91` (-2000), `I63.512` (1500) | Stroke prevalent, and incident through the `I63.` prefix |
 | 1006 | `I21.A1` (300) | No AMI: Type 2 MI is not in the definition (near miss) |
@@ -53,5 +53,5 @@ Expected outcome counts (11 cohort patients):
 | outcome | any | prevalent | incident |
 |---|---|---|---|
 | ami | 3 | 1 | 3 |
-| hf | 3 | 0 | 2 |
+| hf | 3 | 1 | 1 |
 | stroke | 3 | 2 | 3 |
