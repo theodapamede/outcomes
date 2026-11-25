@@ -1,0 +1,16 @@
+[project]
+name = "outcomes"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.3.3",
+    "polars>=2.0.0",
+    "pyarrow>=25.0.1",
+]
+
+[dependency-groups]
+dev = [
+    "nbstripout>=0.9.2",
+]

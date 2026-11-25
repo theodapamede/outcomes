@@ -1,0 +1,50 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# ---------------------------------------------------------------
+# PUBLIC REPO: never commit patient data, even anonymized.
+# Only code and code definitions (definitions/**/*.txt) belong here.
+# Notebook outputs are stripped on commit by nbstripout (.gitattributes).
+# ---------------------------------------------------------------
+outputs/
+data/
+CLINICAL/
+.ipynb_checkpoints/
+
+# Data file formats
+*.parquet
+*.csv
+*.tsv
+*.feather
+*.arrow
+*.pkl
+*.pickle
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.xlsx
+*.xls
+*.sas7bdat
+*.dta
+*.sav
+*.rds
+*.RData
+*.db
+*.sqlite
+*.json
+!.vscode/*.json
+
+# Synthetic example tables (no real patients) are the only data allowed
+!examples/*.csv
+
+# Local data paths/credentials
+.env
